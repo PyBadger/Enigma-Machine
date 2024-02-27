@@ -40,10 +40,27 @@ class Plugboard:
             self.enc_alph = self.enc_alph[:pos_first]+second+self.enc_alph[pos_first+1:]
             self.enc_alph = self.enc_alph[:pos_second]+first+self.enc_alph[pos_second+1:]
 
+    def encrypt(self, letter):
+        #Gives corresponding position of the letter you've entered in the now encrypted alphabet, 
+        #Which is the value which will be used in the next rotor to encrypt your letter further.
+        encrletter_pos = self.enc_alph.find(letter) #returns position
+        encrletter = self.enc_alph[encrletter_pos] #returns the encrypted letter on that position
+        print( encrletter_pos) #This is what's relevant for the actual encryption. The position
+    # is whats moves forward in the encryption.
+    def decrypt(self, pos):
+        #The rotor transfers the position
+        decrpos = self.enc_alph[pos] #What letter is at the position the rotor will give us
+        decrletter = self.stand_alph.find(decrpos) #where is this letter in the unscrambled alphabet
+        print(decrpos)
+        
+
+
+        
+
     def print_encrypted(self):
         #This is just a troubleshooting method
-        print(self.stand_alph)
-        print(self.enc_alph)
+        print(self.stand_alph, "--" "standard alphabet")
+        print(self.enc_alph, "-- scrambled alphabet")
     
     
 
@@ -51,8 +68,10 @@ class Plugboard:
         
 
 """For Troubleshooting """
-#p = Plugboard("A-B", "D-C", "Z-E")
-#p.print_encrypted()
+p = Plugboard("A-B", "D-C", "Z-E")
+p.print_encrypted()
+p.encrypt("Z")
+p.decrypt(25)
 
 
     
