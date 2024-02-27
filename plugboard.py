@@ -1,6 +1,9 @@
 """
 This class acts as the first line of encryption, allowing the user to change the position of three letters
-from the standardized alphabet stand_alph to an encrypted alphabet enc_alph"""
+from the standardized alphabet stand_alph creating the encrypted alphabet enc_alph. From there, the user is also 
+able to generate the position of the letters in the new alphabet - which is what is sent onwards to the first 
+rotor. It is also able to take the position from the first rotor and convert it to a letter in the encrypted alph
+abet, which is the final step of deciphering in the enigma machine"""
 
 class Plugboard:
 
@@ -21,7 +24,7 @@ class Plugboard:
         for pair in pairsofletters:
             pair = pair.split("-")
             self.pairsofletters_clean.append(pair) 
-        #Triggers the letters to be changed
+        #Triggers the letters to be switched
         self.changeletters()
         
 
@@ -40,18 +43,18 @@ class Plugboard:
             self.enc_alph = self.enc_alph[:pos_first]+second+self.enc_alph[pos_first+1:]
             self.enc_alph = self.enc_alph[:pos_second]+first+self.enc_alph[pos_second+1:]
 
-    def encrypt(self, letter):
+    def encrypt(self, pos):
         #Gives corresponding position of the letter you've entered in the now encrypted alphabet, 
         #Which is the value which will be used in the next rotor to encrypt your letter further.
-        encrletter_pos = self.enc_alph.find(letter) #returns position
-        encrletter = self.enc_alph[encrletter_pos] #returns the encrypted letter on that position
-        print( encrletter_pos) #This is what's relevant for the actual encryption. The position
-    # is whats moves forward in the encryption.
+        letter = self.stand_alph[pos] #returns letter which the position corresponds to
+        pos_encr = self.enc_alph.find(letter) #finds position of the letter in encrypted alphabet.
+        return pos_encr #This is what's relevant for the actual encryption.
+             # is whats moves forward in the encryption.
     def decrypt(self, pos):
-        #The rotor transfers the position
-        decrpos = self.enc_alph[pos] #What letter is at the position the rotor will give us
-        decrletter = self.stand_alph.find(decrpos) #where is this letter in the unscrambled alphabet
-        print(decrpos)
+        #The rotor transfers the position, which is then decrypted back into the position of original alphabet
+        pos_encr = self.enc_alph[pos] #What letter is at the position the rotor will give us
+        pos_decr = self.stand_alph.find(pos_encr) #where is this letter in the unscrambled alphabet
+        return pos_decr #this can then be fed into keyboard to give the letter back
         
 
 
@@ -67,12 +70,12 @@ class Plugboard:
             
         
 
-"""For Troubleshooting """
+"""For Troubleshooting 
 p = Plugboard("A-B", "D-C", "Z-E")
 p.print_encrypted()
-p.encrypt("Z")
+p.encrypt(25)
 p.decrypt(25)
-
+"""
 
     
     
