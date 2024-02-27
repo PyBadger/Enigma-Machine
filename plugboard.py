@@ -11,25 +11,48 @@ class Plugboard:
         self.pairA = pairA
         self.pairB = pairB
         self.pairC = pairC
-        self.pairsofletters = [self.pairA, self.pairB, self.pairC]
+        pairsofletters = [self.pairA, self.pairB, self.pairC] # letters with "-""
+        self.pairsofletters_clean = [] #container for letters once formatted
+        
+        
+        
 
-        #removes - from input
-        for pair in self.pairsofletters:
+        #removes "-"" from input
+        for pair in pairsofletters:
             pair = pair.split("-")
+            self.pairsofletters_clean.append(pair) 
+        #Triggers the letters to be changed
+        self.changeletters()
+        
+
+        
 
             
-        self.clean_letters = inp_letters.split("-")
-        self.letter1 = self.clean_letters[0]
-        self.letter2 = self.clean_letters[1]
-        self.pos_letter1 = self.enc_alph.find(self.letter1)
-        self.pos_letter2 = self.enc_alph.find(self.letter2)
     def changeletters(self):
-        #This function produces a new encrypted alphabet based on the letter changes made by the user
+        for letter in self.pairsofletters_clean:
+            first = letter[0]
+            second = letter[1]
+            #finds position of letter in the alphabet to be encrypted
+            pos_first = self.enc_alph.find(first) 
+            pos_second = self.enc_alph.find(second)
+            #cuts encrypted alphabet just before the pos of the letter that we want to replace, adds the
+            # letter we want there, then adds the remainder of the alphabet
+            self.enc_alph = self.enc_alph[:pos_first]+second+self.enc_alph[pos_first+1:]
+            self.enc_alph = self.enc_alph[:pos_second]+first+self.enc_alph[pos_second+1:]
 
+    def print_encrypted(self):
+        #This is just a troubleshooting method
+        print(self.stand_alph)
+        print(self.enc_alph)
+    
+    
 
-p = Plugboard("A-B")
+            
+        
 
-p.changeletters()
+"""For Troubleshooting """
+#p = Plugboard("A-B", "D-C", "Z-E")
+#p.print_encrypted()
 
 
     
