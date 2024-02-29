@@ -1,8 +1,8 @@
 The actual machine contained the following components:
 - A keyboard that took an input
 - A plugboard that acted as a first level of encryption
-- At least three rotors that performed a level 3 (?) substitution encryption, the initial setting of which could
-also be changed.
+- At least three rotors that performed a level 3 (?) substitution encryption through moving with each consequetive
+input.
 - A reflector, which also acts as a rotor/scrambler, but which does not move.
 - A system of lamps, that showed the user the message ( letterwise ) encrypted.
 
@@ -10,7 +10,7 @@ As we are not bound to components, this program will not emulate every aspect of
 The core principles however will be copied : an input will be scrambled by a plugboard followed by three
 separate scramblers. The intial settings of the plugboard (probably three letters?) and the scrambler will be 
 open to be altered by the user - which is also what will allow the machine to deschiper its own encryption. For
-ease, we will only use three rotors, based on the hisotrical rotors Q, E and V.
+ease, we will only use three rotors, based on the hisotrical rotors I, II and III.
 
 KEYBOARD:
 Simply takes input letters and converts into position on the alphabet. It should also be able to take a position
@@ -22,11 +22,21 @@ alternative, jumbled alphabet. Example: A-B, C-F, E-G. The first level of encryp
 of the letter inputted on the new, jumbled alphabet is what's passed onto the next level of encryption.
 
 SCRAMBLERS / ROTORS:
-The rotors are the heart of the enigma machine. In the machine they consist out of two collumns of alphabets
-one of which is based on the standard alphabetical order (abc..) and the other, depending on the rotor type
-in question, is ordered in a jumbled fashion. The right collumn is usually the normal alphabet, while the left
-collumn is the jumbled alphabet. During encryption, the position from the input direction is transferred to
-jumbled alphabet in the rotor, and it is wired to a corresponding letter on the unjumbled alphabet 
+The rotors are the heart of the enigma machine. In the machine, the input letter changes into another letter
+simply by how the wiring feeds into a new set of letters, which depends on the rotor in use. This is emulated by
+constantly refering back to the standardised alphabet within a rotor. SO, for example. A becomes B when going from
+the plugboard to the rotor, and lets say that's because the scrambled alphabet in the second rotor begins with BCD as
+opposed to ABC
+
+This would be signified by 0 becoming 0, and even though that encrypts the message, that alone would also not 
+be decryptable. Therefore, we will also have a standardized alphabet in every rotor, which helps (us) know what
+signal means what. So, 0 on the encrypted alphabet is then still 2 on the regular alphabet in that rotor. The signal
+transferred to the next rotor is then 2, which is ( to us B ). 
+
+And in the second rotor, lets say that it has an alphabet that goes BHD, 2 would be D. And so, the user input A has become
+D by the second rotor.
+
+
 
 Overview of signal transfer:
 KEY ENTERED => Pos in alphabet = > pos in user jumbled plugboard alphabet => corresponding pos in jumbled alphabet of first rotor. 
