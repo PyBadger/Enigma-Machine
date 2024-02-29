@@ -13,10 +13,26 @@ open to be altered by the user - which is also what will allow the machine to de
 ease, we will only use three rotors, based on the hisotrical rotors Q, E and V.
 
 KEYBOARD:
-Simply takes input letters and converts into position on the alphabet.
+Simply takes input letters and converts into position on the alphabet. It should also be able to take a position
+and return a letter.
 
 PLUGBOARD:
-Simply takes three positions of the alphabet and replaces them according to the users' wishes. Example:
-A-B, C-F, E-G.
+Simply takes three positions of the alphabet and replaces them according to the users' wishes creating an 
+alternative, jumbled alphabet. Example: A-B, C-F, E-G. The first level of encryption is then that the position 
+of the letter inputted on the new, jumbled alphabet is what's passed onto the next level of encryption.
 
 SCRAMBLERS / ROTORS:
+The rotors are the heart of the enigma machine. In the machine they consist out of two collumns of alphabets
+one of which is based on the standard alphabetical order (abc..) and the other, depending on the rotor type
+in question, is ordered in a jumbled fashion. The right collumn is usually the normal alphabet, while the left
+collumn is the jumbled alphabet. During encryption, the position from the input direction is transferred to
+jumbled alphabet in the rotor, and it is wired to a corresponding letter on the unjumbled alphabet 
+
+Overview of signal transfer:
+KEY ENTERED => Pos in alphabet = > pos in user jumbled plugboard alphabet => corresponding pos in jumbled alphabet of first rotor. 
+Its now a new letter. It has a corresponding position on the unjumbled alphabet on rotor => THAT position is
+transferred into next rotor. ====> Continues on throughout rotor system, until reaches REFLECTOR. 
+
+REFLECTOR:
+Acts as a rotor, except signal goes from rotor to jumbled alphabet of reflector, to unjumbled alphabet and back to unjumbled
+alphabet in the rotor that gave it the signal based on its position on the rotor. 
