@@ -13,7 +13,7 @@ class Pipeline:
         self.rIII = rotator3 #Third Rotor
         self.ref = reflector #Reflector
 
-        self.sentence = input("Enter sentence, and do not use any strange symbols or letters than what is contained in a standard english alphabet: ")
+        self.sentence = input("Enter sentence, \n.. and do not use any strange symbols or letters than what is contained in a standard english alphabet: ")
         self.cleanup()
         self.chunks = self.underscore.split() #creates chunks of words out of the sentences
         self.repo = [] #A repository to store the encrypted letters
