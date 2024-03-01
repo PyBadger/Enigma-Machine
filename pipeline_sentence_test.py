@@ -2,26 +2,18 @@ from keyboard import Keyboard
 from plugboard import Plugboard 
 from rotor import Rotor
 from rotor_types import I, II, III
-from reflector import Reflector
 from rotor_types import A as refA
+from reflector import Reflector
 
-
-kba = Keyboard()
-pba = Plugboard("A-D", "D-C", "Z-E")
-rIa = Rotor(I, "Q")
-rIIa = Rotor(II, "Q")
-rIIIa = Rotor(III, "Q")
-roo = Reflector(refA)
+kb = Keyboard()
+pb = Plugboard("A-D", "D-C", "Z-E")
+rotorI = Rotor(I, "Q")
+rotorII = Rotor(II, "Q")
+rotorIII = Rotor(III, "Q")
+ref = Reflector(refA)
 
 class Pipeline:
-    def __init__(self, keyboard, plugboard, rotator1, rotator2, rotator3, reflector):
-        self.kb = keyboard #keyboard
-        self.pb = plugboard #plugboard
-        self.rI = rotator1 #First Rotor
-        self.rII = rotator2#Second Rotor
-        self.rIII = rotator3 #Third Rotor
-        self.ref = reflector #Reflector
-
+    def __init__(self):
         self.sentence = input("Enter sentence, please ")
         self.cleanup()
         self.chunks = self.underscore.split() #creates chunks of words out of the sentences
@@ -42,17 +34,17 @@ class Pipeline:
                 if letter == "_":
                     self.repo.append("_")  #If there's a space used in the sentence, just add it to the repo, and continue loop
                     continue
-                enc_kb = self.kb.encrypt(letter)
-                enc_pb = self.pb.encrypt(enc_kb)
-                enc_rI = self.rI.encrypt(enc_pb)
-                enc_rII = self.rII.encrypt(enc_rI)
-                enc_rIII = self.rIII.encrypt(enc_rII)
-                reflctr = self.ref.reflect(enc_rIII)
-                enc_rIII = self.rIII.decrypt(reflctr)
-                enc_rII = self.rII.decrypt(enc_rIII)
-                enc_rI = self.rI.decrypt(enc_rII)
-                enc_pb = self.pb.decrypt(enc_rI)
-                enc_kb = self.kb.decrypt(enc_pb)
+                enc_kb = kb.encrypt(letter)
+                enc_pb = pb.encrypt(enc_kb)
+                enc_rI = rotorI.encrypt(enc_pb)
+                enc_rII = rotorII.encrypt(enc_rI)
+                enc_rIII = rotorIII.encrypt(enc_rII)
+                re = ref.reflect(enc_rIII)
+                enc_rIII = rotorIII.decrypt(re)
+                enc_rII = rotorII.decrypt(enc_rIII)
+                enc_rI = rotorI.decrypt(enc_rII)
+                enc_pb = pb.decrypt(enc_rI)
+                enc_kb = kb.decrypt(enc_pb)
                 self.repo.append(enc_kb)
     def form_sentence(self):
         self.encrypted_sentence = "".join(self.repo) #puts the letters together from the repository
@@ -67,6 +59,6 @@ class Pipeline:
 
 
 
-b = Pipeline(kba,pba,rIa,rIIa, rIIIa, roo)
+b = Pipeline()
 #b.process()
 #b.form_sentence()
