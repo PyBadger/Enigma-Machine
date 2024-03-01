@@ -17,10 +17,22 @@ class Pipeline:
         self.sentence = input("Enter sentence, please ")
         self.underscore = self.sentence.replace(" ", "_") #replaces empty space with underscore
         self.chunks = self.underscore.split() #creates chunks of words out of the sentences
-        self.repo = []
+        self.repo = [] #A repository to store the encrypted letters
+        self.encrypted_sentence = "ABCD" #placeholder
+        self.process()
+        self.form_sentence()
+        print("You wrote:", self.sentence)
+        print("That is encrypted into: ", self.encrypted_sentence)
+    
+    def cleanup(self):
+        
+
     def process(self):
         for word in self.chunks:
             for letter in word:
+                if letter == "_":
+                    self.repo.append("_")  #If there's a space used in the sentence, just add it to the repo, and continue loop
+                    continue
                 enc_kb = kb.encrypt(letter)
                 enc_pb = pb.encrypt(enc_kb)
                 enc_rI = rotorI.encrypt(enc_pb)
@@ -33,8 +45,13 @@ class Pipeline:
                 enc_pb = pb.decrypt(enc_rI)
                 enc_kb = kb.decrypt(enc_pb)
                 self.repo.append(enc_kb)
+    def form_sentence(self):
+        self.encrypted_sentence = "".join(self.repo) #puts the letters together from the repository
+        self.encrypted_sentence = self.encrypted_sentence.replace("_", " ") #replaces the "_" we've added with spaces
+       
+
             
-        print(self.repo)
+        
 
 
            
@@ -42,4 +59,5 @@ class Pipeline:
 
 
 b = Pipeline()
-b.process()
+#b.process()
+#b.form_sentence()
