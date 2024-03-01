@@ -15,7 +15,7 @@ ref = Reflector(refA)
 class Pipeline:
     def __init__(self):
         self.sentence = input("Enter sentence, please ")
-        self.underscore = self.sentence.replace(" ", "_") #replaces empty space with underscore
+        self.cleanup()
         self.chunks = self.underscore.split() #creates chunks of words out of the sentences
         self.repo = [] #A repository to store the encrypted letters
         self.encrypted_sentence = "ABCD" #placeholder
@@ -23,9 +23,10 @@ class Pipeline:
         self.form_sentence()
         print("You wrote:", self.sentence)
         print("That is encrypted into: ", self.encrypted_sentence)
-    
-    def cleanup(self):
         
+    def cleanup(self):
+        self.sentence = self.sentence.upper()
+        self.underscore = self.sentence.replace(" ", "_") #replaces empty space with underscore
 
     def process(self):
         for word in self.chunks:
