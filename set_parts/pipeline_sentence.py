@@ -1,17 +1,8 @@
-from keyboard import Keyboard 
-from plugboard import Plugboard 
-from rotor import Rotor
-from rotor_types import I, II, III
-from reflector import Reflector
-from rotor_types import A as refA
+from .keyboard import Keyboard 
+from .plugboard import Plugboard 
+from .rotor import Rotor
+from .reflector import Reflector
 
-
-kba = Keyboard()
-pba = Plugboard("A-D", "D-C", "Z-E")
-rIa = Rotor(I, "Q")
-rIIa = Rotor(II, "Q")
-rIIIa = Rotor(III, "Q")
-roo = Reflector(refA)
 
 class Pipeline:
     def __init__(self, keyboard, plugboard, rotator1, rotator2, rotator3, reflector):
@@ -22,7 +13,7 @@ class Pipeline:
         self.rIII = rotator3 #Third Rotor
         self.ref = reflector #Reflector
 
-        self.sentence = input("Enter sentence, please ")
+        self.sentence = input("Enter sentence, and do not use any strange symbols or letters than what is contained in a standard english alphabet: ")
         self.cleanup()
         self.chunks = self.underscore.split() #creates chunks of words out of the sentences
         self.repo = [] #A repository to store the encrypted letters
@@ -65,8 +56,3 @@ class Pipeline:
 
            
 
-
-
-b = Pipeline(kba,pba,rIa,rIIa, rIIIa, roo)
-#b.process()
-#b.form_sentence()
