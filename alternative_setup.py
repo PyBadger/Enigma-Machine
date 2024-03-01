@@ -10,8 +10,10 @@ pb = Plugboard("A-D", "E-G", "Y-K") # arg 1, 2 and 3 represent what letters one 
 # yet! 
 
 r1 = Rotor(I, "Q") 
-r2 = Rotor(II, "Q")
-r3 = Rotor(III, "Q")
+r2 = Rotor(IV, "Q")
+r3 = Rotor(II, "Q")
 refl = Reflector(refA)
 
 start = Pipeline(kb, pb,r1,r2,r3,refl)
+
+
