@@ -16,6 +16,7 @@ As the rotors do not move (YET), it decreases the level of encryption performed 
 
 -- SMALL UPDATES NEEDED --
 - Methods in rotor (encrypt) and (decrypt) need to have their names changed - perhaps to (input) and (output) to reflect what they actually do
+- catch more errors in input
 
 -- BIG UPDATES NEEDED --
 - implement actual rotate function into rotor class based on turning notch
