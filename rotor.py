@@ -27,6 +27,7 @@ class Rotor:
             pos_decr = self.stand_alph.find(pos_encr) #where is this letter in the unscrambled alphabet
             return pos_decr #this can then be fed into keyboard to give the letter back    
     def print_alph(self):
+          #This is just for troubleshooting
           print(self.enc_alph, "--This is the scrambled alphabet")
           print(self.stand_alph, "-This is the standard alphabet")        
 

@@ -2,12 +2,14 @@ from keyboard import Keyboard
 from plugboard import Plugboard 
 from rotor import Rotor
 from rotor_types import I, II, III
+from rotor_types import A as refA
+from reflector import Reflector
 
 #I = "EKMFLGDQVZNTOWYHXUSPAIBRCJ"
 
 k = Keyboard()
-print(k.encrypt("A"))
-print(k.decrypt(0))
+print(k.encrypt("P"))
+#print(k.decrypt(0))
 
 #Letter A is now position 0 on the alphabet
 A = k.encrypt("A")
@@ -31,3 +33,14 @@ rotorI.print_alph()
 rotorII = Rotor(II, "V")
 print(rotorII.encrypt(6))
 rotorII.print_alph()
+
+ref = Reflector(refA)
+print(ref.reflect(17))
+ref.print_alph()
+#Becomes N in the standard alphabet, and is fed back into the rotor system
+
+print(rotorII.decrypt(13))
+rotorII.print_alph()
+print(rotorI.decrypt(19))
+print(p.decrypt(15))
+print(k.decrypt(15))
