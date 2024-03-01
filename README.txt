@@ -7,5 +7,5 @@ The way that it emulates the enigma machine is elaborated upon in the METACODE f
 
 The rotor(s) can move, which is what adds an added layer of encryption to the enigma machine, but I am not sure I will be able to implement it before the deadline of this project. To that end, I will be satisfied if I can create a program that can encrypt what the user inputs through ONE user altered alphabet (plugboard), then THREE rotors containing a pre-set alphabet. 
 
-<font size="+2"> <b> If there is even more time </font>
+<b> If there is even more time <b>
 - I will try to create a GUI that projects the user input in real time, much like the lamp-board (?) did in real life.
